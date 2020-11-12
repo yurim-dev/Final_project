@@ -1,0 +1,26 @@
+@charset "UTF-8";
+#title {
+	background-color: white!important;
+	border-bottom: coral 2px solid!important;
+}
+
+#divider {
+	border-color: coral;
+	border-style: 2px;
+}
+
+#tfoot {
+	color: coral;
+}
+#continue {
+	background: white;
+	border: coral solid 1px!important;
+	color: coral;
+}
+#history {
+	background: coral!important;
+	color: white!important;
+}
+.hover-coral:hover {
+	color: coral;
+}

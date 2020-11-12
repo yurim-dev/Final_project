@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.RecommendMapper">
+	<!-- 재료 중에 추천 상품을 가져오기 -->
+	<select id="getIngredient" resultType="hashmap">
+		SELECT goodsName, thumbImgUrl FROM goods
+		WHERE goodsName LIKE '%'||#{query}||'%'
+		AND category LIKE 'S'
+	</select>
+	
+	<!-- 밀키트 중에 추천 상품을 가져오기 -->
+	<select id="getMealkit" resultType="hashmap">
+		SELECT goodsName, thumbImgUrl FROM goods
+		WHERE goodsName LIKE '%'||#{query}||'%'
+		AND category LIKE 'M'
+	</select>
+</mapper>

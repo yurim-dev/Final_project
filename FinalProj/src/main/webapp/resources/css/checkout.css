@@ -1,0 +1,29 @@
+@charset "UTF-8";
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: 0;}
+/* #logo>h1>a {
+	font-weight: 400;
+	font-size: 36px;
+} */
+#title {
+	background-color: white!important;
+	color: black;
+}
+.coral {
+	color: coral!important;
+}
+#divider {
+	color: #DDDDDD;
+}
+#cancel {
+	background: white;
+	border: coral solid 1px!important;
+	color: coral;
+}
+#checkout {
+	background: coral!important;
+	color: white!important;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="org.final_proj.mapper.VideoMapper">
+ 	<!-- 유튜브 채널 데이터 가져오기 -->
+ 	<select id="getChannels" resultType="org.final_proj.domain.ChannelVO">
+ 		SELECT channelName, icon, channelId, playlistId
+ 		FROM channel
+ 	</select>
+ </mapper>

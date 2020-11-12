@@ -1,0 +1,111 @@
+body{margin:0; padding:0;}
+a{text-decoration:none; color:black;}
+a:visited{color:black;}
+
+.wrap_box{
+    width:980px;
+    padding:150px;
+    margin:-77px auto 0;
+    margin-top:0px;
+    background-color: white;
+    height: 800px;
+}
+
+.loginbox{
+    position: relative;
+    top:-10%;
+    left:30%;
+}
+.remember{
+	position:relative;
+	font-size:12px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+h3{
+    font-size:25px;
+    margin-bottom: 7%;
+    margin-left: 14%;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.findid{
+	position: relative;
+	width:100px;
+	height:10px;
+    font-size:12px;
+    top:-17px;
+    left:21%;
+    margin-bottom:3px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.findid:hover{
+	text-decoration:underline;
+}
+.findpwd:hover{
+	text-decoration:underline;
+}
+.findpwd{
+	position: relative;
+	width:100px;
+	height:10px;
+    font-size:12px;
+    top:-34px;
+    left:27%;
+    padding:4px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+input[type="text"], [type="password"]{
+        border-radius: 5px;
+        width: 300px;
+        height: 54px;
+        padding: 0px 19px;
+        border-width:thin;
+        border-style: solid;
+        border-color: #ccc;
+        font-size: 14px;
+        cursor:text;
+        margin-bottom:10px;
+        font-family: 'Nanum Gothic', sans-serif;
+        
+}
+input[type="submit"]{
+    background-color: coral;
+    border-style: none;
+    border-radius: 5px;
+    width: 340px;
+    height: 54px;
+    font-size:16px;
+    color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+	
+}
+button[type="button"]{
+    background-color: #fff;
+    border-width: thin;
+    border-color: coral;
+    border-style: solid;
+    border-radius: 5px;
+    color:coral;
+    width: 340px;
+    height: 54px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+input:focus { 
+    outline: none;
+    box-shadow: 0 0 0 0.8px black;
+}
+
+input[type="submit"], button[type="button"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.1px coral;
+}

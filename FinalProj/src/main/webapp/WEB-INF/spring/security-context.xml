@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+<bean id="customUserDetailsService" class="org.final_proj.service.CustomUserDetailsService"/>
+<bean id="customAuthenticationSuccessHandler" class="org.final_proj.service.AuthenticationSuccessHandler">
+	<property name="loginidname" value="userId"/>
+	<property name="defaultUrl" value="/"/>
+	</bean>
+ <bean id="customAuthenticationFailureHandler" class="org.final_proj.service.AuthenticationFailureHandler">
+	<property name="loginidname" value="userId"/>
+	<property name="loginpwdname" value="userPwd"/>
+	<property name="errormsgname" value="ERRORMSG"/>
+	<property name="defaultFailureUrl" value="/loginError"/>
+	</bean> 
+ <bean id="CustomLogoutHandler" class="org.final_proj.service.CustomLogoutHandler"/>
+
+<security:http auto-config="true" use-expressions="true">
+<!-- <security:intercept-url pattern="/secu/member" access="hasAnyRole('MEMBER', 'ADMIN')" /> -->
+<security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+
+
+<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
+
+<security:access-denied-handler error-page="/accessError"/>
+
+<security:form-login login-page="/secu/login"
+				username-parameter="userId"
+                password-parameter="userPwd"
+                authentication-success-handler-ref="customAuthenticationSuccessHandler"
+               />
+                
+<!--  authentication-failure-handler-ref="customAuthenticationFailureHandler" -->
+<security:logout
+		success-handler-ref="CustomLogoutHandler"
+		invalidate-session="false"
+		delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+</security:http>
+								
+<security:authentication-manager>
+	<security:authentication-provider user-service-ref="customUserDetailsService">
+	<security:password-encoder ref="bcryptPasswordEncoder"/>
+	</security:authentication-provider>
+</security:authentication-manager>
+
+</beans>

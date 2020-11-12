@@ -1,0 +1,52 @@
+body{margin:0; padding:0;}
+a{text-decoration:none; color:black;}
+a:visited{color:black;}
+a:hover{text-decoration:none; color:coral;}
+
+.wrap_box{
+    width:1000px;
+    padding:100px;
+    margin:-77px auto 0;
+    margin-top:0px;
+    background-color: white;
+    height: 800px;
+}
+
+th{	
+
+	height:70px;
+	border-style:solid;
+	border-left:none;
+	border-right:none;
+	border-top:none;
+	border-bottom-width:thin;
+	border-color:gray;
+	background-color: #cecdcd91;
+	font-weight:thin;
+	font-family: 'Nanum Gothic', sans-serif;
+
+}
+
+td{ 
+	height:40px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+
+h3{
+	font-size:60px;
+	padding:10px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight:normal;
+}
+
+table{
+	border-collapse: collapse;
+    border-style: solid;
+    border-top-width: thin;
+    border-bottom-width: thin;
+ 	border-right:none;
+	border-left:none;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight:thin;
+}

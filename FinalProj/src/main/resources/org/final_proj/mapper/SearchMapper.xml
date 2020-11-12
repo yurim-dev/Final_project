@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.SearchMapper">
+	<!-- 전체 레시피 가져오기 -->
+	<select id="getAll" resultType="org.final_proj.domain.RecipeVO">
+		SELECT * FROM recipe
+		<where>
+			<include refid="filterRef"></include>
+		</where>
+		ORDER BY rcp_seq ASC
+	</select>
+	
+	<select id="getRecipeWithPaging" parameterType="org.final_proj.domain.SearchDTO"
+	resultType="org.final_proj.domain.RecipeVO">
+		<![CDATA[
+		SELECT rcp_nm, rcp_seq, att_file_no_mk
+		FROM 	(SELECT rownum rn, rcp_nm, rcp_seq, att_file_no_mk 
+				FROM recipe 
+				WHERE]]>
+				<include refid="searchRef"></include>
+				<![CDATA[
+				rownum <= #{page} * #{amount})
+		WHERE rn > (#{page} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- 검색 결과 가져오기 -->
+	<select id="getResult" resultType="org.final_proj.domain.RecipeVO">
+		
+			SELECT rcp_seq, rcp_nm, att_file_no_mk, 
+			rcp_way2, rcp_pat2, rcp_parts_dtls
+			FROM recipe
+		<where>
+		<include refid="searchRef"></include>
+		<![CDATA[
+		rcp_seq > 0
+		]]>
+		</where>
+	</select>
+
+	<!-- 검색 결과의 개수 계산하기 -->
+	<select id="getTotalNumber" resultType="int">
+		SELECT COUNT(*)
+		FROM recipe
+		WHERE
+		<include refid="searchRef"></include>
+		rcp_seq > 0
+	</select>
+
+	<!-- 검색 결과에서 방법 키워드만 가져오기 -->
+	<select id="searchWay" resultType="String">
+		SELECT DISTINCT rcp_way2
+		FROM recipe
+		<where>
+			<include refid="searchRef"></include>
+		rcp_seq > 0
+		</where>
+	</select>
+
+	<!-- 검색 결과에서 종류 키워드만 가져오기 -->
+	<select id="searchKind" resultType="String">
+		SELECT DISTINCT rcp_pat2
+		FROM recipe
+		<where>
+		<include refid="searchRef"></include>
+		rcp_seq > 0
+		</where>
+	</select>
+
+	<select id="getFilteredResult"
+		resultType="org.final_proj.domain.RecipeVO">
+		SELECT rcp_seq, rcp_nm, att_file_no_mk,
+		rcp_way2, rcp_pat2, rcp_parts_dtls
+		FROM recipe
+		<where>
+			<include refid="searchRef"></include>
+			<include refid="filterRef"></include>
+			<![CDATA[
+			AND rcp_seq > 0
+			]]>
+		</where>
+	</select>
+	
+	<!-- 검색 결과 조건절 -->
+	<sql id="searchRef">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'I'.toString()">
+							rcp_parts_dtls LIKE '%'||#{query}||'%'
+						</when>
+						<when test="type == 'N'.toString()">
+							rcp_nm LIKE '%'||#{query}||'%'
+						</when>
+						<when test="type == 'K'.toString()">
+							rcp_pat2 LIKE '%'||#{query}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 검색 결과 필터링 조건절 -->
+	<sql id="filterRef">
+		<choose>
+			<when test="filter == 'w'.toString()">
+				rcp_way2 LIKE #{filterWord}
+			</when>
+			<when test="filter == 'k'.toString()">
+				rcp_pat2 LIKE #{filterWord}
+			</when>
+		</choose>
+	</sql>
+</mapper>

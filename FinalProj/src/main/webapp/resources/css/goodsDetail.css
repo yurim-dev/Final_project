@@ -1,0 +1,148 @@
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration:none; color:black;}
+img{border: 0;}
+
+#detail_goods{
+    width: 1050px;
+    margin: auto;
+    padding-top:20px;
+}
+#goods_img{
+    float: left;
+    padding-right: 25px;
+}
+#description{
+    float: right;
+}
+.goods_name{
+    width: 560px;
+    float: right;
+    display: block;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    word-break: break-all;
+}
+.price{
+    float: left;
+    font-size: 25px;
+    font-weight: 700;
+
+}
+.goods_info{
+    float: right;
+    width: 560px;
+    margin-top: 19px;
+    padding-bottom: 19px;
+}
+.list{
+    overflow: hidden;
+    padding: 18px 0;
+    border-bottom: 1px solid #f4f4f4
+}
+.tit{
+    float: left;
+    width: 150px;
+    font-size: 14px;
+    color: #666;
+    line-height: 20px;
+}
+.desc{
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+   /*  word-break: break-all; */
+    color: black;
+}
+#get_goods{
+	width: 280px;
+    float: left;
+   /*  text-align: center; */
+
+}
+.cart_btn{
+	font-family: 'Nanum Gothic', sans-serif;
+	height:80px;
+	width:150px;
+    border:solid 1px coral;
+    border-radius:20px;
+    text-align:center;
+    font-size:14px;
+    cursor:pointer;
+    font-weight: bolder;
+    max-width:50%;
+    background-color: white;
+}
+.cart_btn:hover{ 
+	
+	background-color: coral;
+	color:white;
+}
+.cart_btn:hover>a{
+	background-color: white;
+
+}
+#back_block{
+	width: 280px;
+    float: left;
+    text-align: center;
+}
+.back_btn{
+	font-family: 'Nanum Gothic', sans-serif;
+	height:80px;
+	width:150px;
+	font-size:14px;
+    text-align:center;
+    border-radius:20px;
+   	border:solid 1px coral;
+    background-color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    
+}
+.back_btn:hover{
+	background-color: coral;
+	border:none;
+	color:white;
+}
+.back_btn:hover>a{
+	background-color: coral;
+	border:none;
+	color:white;
+}
+
+.back_btn:hover>a{
+	background-color: coral;
+	
+}
+.shortEx{
+	margin:20px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size :30px;
+	text-align:center;
+}
+.goodsName{
+	
+	margin:30px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:40px;
+	color:rgba(128, 128, 128, 0.877);
+	text-align:center;
+}
+.longEx{
+	
+	margin:20px;
+	font-size:20px;
+	
+	
+}
+hr{	
+	border-top: 1px solid coral;
+}
+
+#test{
+	width: 100%;
+	background: red
+}

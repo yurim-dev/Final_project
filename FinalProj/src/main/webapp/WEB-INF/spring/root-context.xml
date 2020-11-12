@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+<!-- Root Context: defines shared resources visible to all other web components -->
+
+<!-- <bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
+   <property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" name="driverClassName"/>
+   <property value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" name="jdbcUrl"/>
+   <property value="hr" name="username"/>
+   <property value="hr" name="password"/>
+</bean> -->
+
+<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
+   <property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" name="driverClassName"/>
+   <property value="jdbc:log4jdbc:oracle:thin:@procyon0.ck4kg3glcu4x.ap-northeast-2.rds.amazonaws.com:1521:ORCL" name="jdbcUrl"/>
+   <property value="procyon0" name="username"/>
+   <property value="*shtjswn01098654559" name="password"/>
+</bean>
+<!-- HikariCP configuration -->
+
+<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource" destroy-method="close">
+<constructor-arg ref="hikariConfig"/>
+</bean>
+
+<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+<property name="dataSource" ref="dataSource"/>
+</bean>
+
+<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/><!-- >465 or 25 -->
+		<property name="username" value="rrim3246@gmail.com"/>
+		<property name="password" value="fptlvl123"/>
+		<property name="defaultEncoding" value="utf-8"/>
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+<tx:annotation-driven/>
+
+<mybatis-spring:scan base-package="org.final_proj.mapper"/>
+<context:component-scan base-package="org.final_proj.service"/>
+</beans>

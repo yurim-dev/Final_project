@@ -1,0 +1,46 @@
+@charset "UTF-8";
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: 0;}
+/* #logo>h1>a {
+	font-weight: 400;
+	font-size: 36px;
+} */
+#menu>ul>li>a{
+      text-decoration: none;
+      }
+#login>ul>li>a{
+   text-decoration: none;
+} 
+#content {
+	margin: 0 auto;
+	width: 60%;
+	/* text-align:center; */
+	border: solid grey 5px;
+}
+
+.icon {
+	display: inline;
+}
+.icon>img {
+	display:inline;
+	border: 10px white solid;
+	border-radius: 50%;
+}
+.channel_title {
+	margin: auto;
+	padding: auto;
+	display:inline-block;
+	text-align: justify;
+	text-justify:distribute;
+}
+.channel_description {
+	display:inline-block;
+	text-align: justify;
+	text-justify:distribute;
+}
+a:hover{
+	text-decoration: none !important;
+}

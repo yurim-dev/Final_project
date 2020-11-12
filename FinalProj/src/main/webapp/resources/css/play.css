@@ -1,0 +1,19 @@
+@charset "UTF-8";
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: 0;}
+/* #logo>h1>a {
+	font-weight: 400;
+	font-size: 36px;
+} */
+* {
+	margin: 0 auto;
+}
+#bg {
+	background-color: #FFFFFF;
+}
+#divider {
+	background-color: #DDDDDD;
+}

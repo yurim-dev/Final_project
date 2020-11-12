@@ -1,0 +1,110 @@
+body{margin:0; padding:0;}
+a{text-decoration:none; color:black;}
+a:visited{color:black;}
+
+.wrap_box{
+    width:980px;
+    padding:100px;
+    margin:-77px auto 0;
+    margin-top:0px;
+    background-color: white;
+    height: 800px;
+}
+
+h2{
+	position:relative;
+    font-size:30px;
+    left:24.5%;
+    padding:40px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.box{
+    position: relative;
+    width:540px;
+    top:-50px;
+    left:200px;
+}
+
+
+#sub{
+    position: relative;
+    left:85%;
+    color:red;
+    font-size:11px;
+}
+.sub2{
+    position: relative;
+    left:86%;
+    top:-20px;
+    color:gray;
+    font-size:12px;
+}
+
+input[type="submit"]{
+    background-color: coral;
+    border-style: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 60px;
+    font-size:16px;
+    color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-top:30px;
+    margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+button[type="button"]{
+    background-color: coral;
+    border-style: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 60px;
+    font-size:16px;
+    color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-top:30px;
+    margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+input[type="submit"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.1px coral;
+}
+
+button[type="button"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.1px coral;
+}
+
+input:focus { 
+    outline: none;
+    box-shadow: 0 0 0 0.8px black;
+}
+
+input[type="text"], input[type="password"]{
+	width:332px;
+	height:44px;
+	padding:10px;
+	border-radius: 5px;
+    padding: 0px 19px;
+    border-width:thin;
+    border-style: solid;
+    border-color: #ccc;
+    font-size: 14px;
+    cursor:text;
+    font-family: 'Nanum Gothic', sans-serif;
+	
+}
+th{
+	font-size:14px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+span{
+	color:red;
+	font-size:12px;
+	font-family: 'Nanum Gothic', sans-serif;
+}

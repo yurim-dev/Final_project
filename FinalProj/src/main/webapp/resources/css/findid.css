@@ -1,0 +1,71 @@
+body{margin:0; padding:0;}
+a{text-decoration:none; color:black;}
+a:visited{color:black;}
+
+.wrap_box{
+    width:980px;
+    padding:150px;
+    margin:-77px auto 0;
+    margin-top:0px;
+    background-color: white;
+    height: 800px;
+}
+
+.box{
+    position: relative;
+    top:-10%;
+    left:30%;
+}
+
+h3{
+    font-size:25px;
+    margin-bottom: 7%;
+    margin-left: 10%;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+input[type="text"]{
+        border-radius: 5px;
+        width: 300px;
+        height: 54px;
+        padding: 0px 19px;
+        border-width:thin;
+        border-style: solid;
+        border-color: #ccc;
+        font-size: 14px;
+        cursor:text;
+        margin-bottom:10px;
+        font-family: 'Nanum Gothic', sans-serif;
+        
+}
+input[type="submit"]{
+    background-color: coral;
+    border-style: none;
+    border-radius: 5px;
+    width: 340px;
+    height: 54px;
+    font-size:16px;
+    color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-top:20px;
+    margin-bottom:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+	
+}
+
+label{
+	font-size:13px;
+	padding:10px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+input:focus { 
+    outline: none;
+    box-shadow: 0 0 0 0.8px black;
+}
+
+input[type="submit"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.1px coral;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.OrderMapper">
+	<insert id="insertOrder"
+		parameterType="org.final_proj.domain.OrderVO">
+		INSERT ALL
+		<foreach collection="list" item="item">
+			INTO final_order
+			(orderId, userId, goodsno, amount, unitPrice, totalPrice) VALUES
+			(#{item.orderId}, #{item.userId}, #{item.goodsNo}, #{item.amount},
+			#{item.unitPrice}, #{item.totalPrice})
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+	<delete id="deleteOrderedGoods" parameterType="java.util.List">
+		DELETE FROM cart
+		<where>
+			<foreach collection="list" item="item" separator="OR"
+				open="(" close=")">
+				(userid LIKE #{item.userId} AND goodsNo LIKE #{item.goodsNo})
+			</foreach>
+		</where>
+	</delete>
+	
+	<select id="getDetail" resultMap="order">
+		SELECT  o.orderID "orderID", o.goodsno "goodsNo", g.goodsName "goodsName", o.amount "amount",
+		o.unitPrice "unitPrice", o.totalPrice "totalPrice", TO_CHAR(orderDate, 'YYYY-MM-DD HH24:MI:SS') "orderDate",
+        o.status "status", m.userName "userName", m.address "address"
+        FROM final_order o, goods g, final_member m
+        WHERE o.goodsno = g.GOODSNO AND o.userId = m.userId AND o.orderId = #{orderId}
+	</select>
+	
+	<select id="getHistory" resultMap="order">
+		SELECT orderid, userId, orderDate, status, SUM(totalPrice) "sum"
+		FROM final_order
+		WHERE userId LIKE #{userId}
+		GROUP BY orderid, userId,orderDate, status
+	</select>
+	
+	<select id="getAllHistory" resultMap="order">
+		SELECT orderid, userId, orderDate, status, SUM(totalPrice) "sum"
+		FROM final_order
+		GROUP BY orderid, userId, orderDate, status
+	</select>
+	
+	<resultMap type="org.final_proj.domain.OrderVO" id="order">
+		<result column="orderId" property="orderId"/>
+		<result column="userId" property="userId"/>
+		<result column="goodsNo" property="goodsNo"/>
+		<result column="amount" property="amount"/>
+		<result column="unitPrice" property="unitPrice"/>
+		<result column="orderdate" property="orderDate"/>
+		<result column="status" property="status"/>
+		<result column="goodsname" property="goodsName"/>
+		<result column="username" property="userName"/>
+		<result column="address" property="address"/>
+		<result column="sum" property="sum"/>
+	</resultMap>
+</mapper>

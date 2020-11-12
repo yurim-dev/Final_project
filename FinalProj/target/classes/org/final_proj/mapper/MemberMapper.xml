@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="org.final_proj.mapper.MemberMapper">
+	
+	<resultMap type="org.final_proj.domain.MemberVO" id="memberMap">
+	<id property="userId" column="userId"/>
+	<result property="userPwd" column="userPwd"/>
+	<result property="rePwd" column="rePwd"/>
+	<result property="userName" column="userName"/>
+	<result property="mailAddress" column="mailAddress"/>
+	<result property="address" column="address"/>
+	<result property="regDate" column="regDate"/>
+	<result property="enabled" column="enabled"/>
+	<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="org.final_proj.domain.AuthVO" id="authMap">
+		<result property="userId" column="userId"/>
+		<result property="authority" column="authority"/>
+	</resultMap>
+	
+	 <resultMap type="org.final_proj.domain.OrderVO" id="order">
+      <result column="orderId" property="orderId"/>
+      <result column="userId" property="userId"/>
+      <result column="goodsno" property="goodsNo"/>
+      <result column="amount" property="amount"/>
+      <result column="unitprice" property="unitPrice"/>
+      <result column="orderdate" property="orderDate"/>
+      <result column="status" property="status"/>
+      <result column="goodsname" property="goodsName"/>
+      <result column="username" property="userName"/>
+      <result column="address" property="address"/>
+      <result column="sum" property="sum"/>
+   </resultMap>
+
+	
+	<select id="read" resultMap="memberMap">
+	select mem.userId, userPwd, rePwd, userName, mailAddress, address, regDate, enabled, authority
+	from final_member mem LEFT OUTER JOIN final_auth auth on mem.userId = auth.userId
+	where mem.userId = #{userId}
+	</select>
+
+
+	<insert id="insert">
+	insert into final_member(userId, userPwd, rePwd, userName, mailAddress, address)
+	values(#{userId}, #{userPwd}, #{rePwd}, #{userName}, #{mailAddress}, #{address})
+	
+	</insert>
+	
+	<insert id="authinsert">
+	insert into final_auth(userId, authority) values(#{userId}, #{authority})
+	</insert>
+	
+	<select id="findId" resultType="String">
+	select userId
+	from final_member
+	where userName =#{findName} and mailAddress = #{findMail}
+	</select>
+	
+	<select id="idCheck" resultType="int">
+	select count(*)
+	from final_member
+	where userId = #{userId}
+	</select>
+	
+	<update id="updatemyinfo">
+	update final_member
+	set userPwd=#{userPwd},
+		rePwd=#{rePwd},
+		userName=#{userName},
+		mailAddress=#{mailAddress},
+		address=#{address}
+		where userId = #{userId}
+	</update>
+	
+	<select id="pwdCheck" resultType="int">
+	select count(*)
+	from final_member
+	where userId = #{userId} and userPwd = #{userPwd}
+	</select>
+	
+	<delete id="deleteauth">
+	delete from final_auth where userId=#{userId}
+	</delete>
+	
+	<delete id="deletecart">
+	delete from cart where userId=#{userId}
+	</delete>
+		
+	<delete id="deleteorder">
+	delete from final_order where userId=#{userId}
+	</delete>
+	
+	<delete id="deletemember">
+	delete from final_member where userId=#{userId}
+	</delete>
+	
+	<update id="findPwd" parameterType="Map">
+	update final_member set userPwd=#{param4}, rePwd=#{param4} where userId=#{param1} and userName=#{param2} and mailAddress = #{param3}
+	</update>
+
+	<select id="login" resultType="org.final_proj.domain.MemberVO">
+	select * from final_member where userId=#{userId}
+	</select>
+	
+	<select id="allmember" resultType="org.final_proj.domain.MemberVO">
+	select userId,userName,mailAddress,address,regDate from final_member order by userId asc
+	</select>
+
+	 <select id="orderlist" resultType="org.final_proj.domain.AdminVO">
+      SELECT orderId, userId, SUM(amount) "amount" , orderDate, status , SUM(totalPrice) "sum"
+      FROM final_order
+      GROUP BY orderId, userId, orderDate, status order by orderDate desc
+   </select>
+   
+
+	
+	</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.final_proj.mapper.CartMapper">
+   <select id="getAll" resultType="org.final_proj.domain.CartDTO">
+      SELECT * FROM cart
+   </select>
+
+   <!-- 사용자의 카트에 있는 제품을 전체 불러옴 -->
+   <select id="get" resultType="org.final_proj.domain.CartDTO">
+      SELECT g.goodsNo "goodsNo",
+      g.goodsName "goodsName", g.thumbImgUrl "thumbImgUrl",
+      c.amount
+      "amount", c.unitPrice "unitPrice" ,c.totalprice "totalPrice"
+      FROM cart
+      c, final_member m , goods g
+      WHERE c.userid=m.userid AND
+      g.goodsNo=c.goodsNo
+      AND c.userid LIKE #{userId}
+      ORDER BY c.insertDate
+   </select>
+
+   <!-- 제품의 가격을 goods 테이블에서 가져옴 -->
+   <select id="getUnitPrice" resultType="String">
+      SELECT price FROM goods
+      WHERE goodsNo LIKE #{goodsNo}
+   </select>
+
+   <!-- 사용자의 카트에 제품을 등록함 -->
+   <insert id="add">
+      CALL my_cart_proc(#{userId}, #{goodsNo}, #{amount})
+   </insert>
+
+   <!-- 사용자 한 명의 장바구니의 전체 가격을 구함 -->
+   <update id="updateTotalPrice">
+      UPDATE cart
+      SET totalPrice = unitPrice * amount
+      WHERE
+      userId LIKE #{userId} AND goodsNo LIKE #{goodsNo}
+   </update>
+
+   <!-- 사용자의 카트에서 선택한 제품을 삭제함 -->
+   <delete id="delete" parameterType="java.util.List">
+      DELETE FROM cart
+      <where>
+         <foreach collection="list" item="item" separator="OR"
+            open="(" close=")">
+            (userid LIKE #{item.userId} AND goodsNo LIKE #{item.goodsNo})
+         </foreach>
+      </where>
+   </delete>
+
+   <!-- 사용자의 카트의 물품의 수량을 변경함 -->
+   <update id="updateAmount">
+      <![CDATA[
+      UPDATE cart
+      SET amount = #{amount}, totalPrice = unitprice * #{amount}, updateDate = sysdate
+      WHERE goodsNo LIKE #{goodsNo} AND userId LIKE #{userId}
+      ]]>
+   </update>
+
+   <select id="getGoods" resultMap="cart">
+      SELECT g.goodsNo "goodsNo",
+      c.totalprice "totalPrice", c.amount "amount"
+      FROM cart c, final_member m , goods g
+      WHERE c.userid = m.userid AND g.goodsNo=c.goodsNo
+      AND c.userid LIKE #{userId}
+      AND g.goodsNo LIKE #{goodsNo}
+   </select>
+
+   <select id="getSum" resultType="int">
+      SELECT SUM(totalPrice)
+      FROM cart
+      WHERE userid LIKE #{userId}
+   </select>
+
+   <select id="checkout" resultMap="cart">
+      SELECT    g.goodsNo "goodsNo", g.goodsName "goodsName", g.thumbImgUrl "thumbImgUrl", c.amount "amount",
+            c.unitPrice "unitPrice" ,c.totalprice "totalPrice", c.userId "userId"
+      FROM cart c, goods g
+      <where>
+         <foreach collection="list" item="item" separator="OR" >
+            (c.userid LIKE #{item.userId} AND c.goodsNo LIKE #{item.goodsNo} AND c.goodsno = g.goodsno)
+         </foreach>
+      </where>
+   </select>
+
+   <resultMap type="org.final_proj.domain.GoodsVO" id="goods">
+      <result column="goodsNo" property="goodsNo" />
+      <result column="goodsName" property="goodsName" />
+      <result column="price" property="price" />
+      <result column="weight" property="weight" />
+      <result column="saleunit" property="saleUnit" />
+      <result column="shippingtype" property="shippingType" />
+      <result column="category" property="category" />
+      <result column="thumbimgurl" property="thumbImgUrl" />
+      <result column="shortex" property="shortEx" />
+      <result column="longex" property="longEx" />
+      <result column="goodsintroingurl" property="goodsIntroImgUrl" />
+      <result column="ckpointimgurl" property="ckPointImgUrl" />
+      <result column="goodspickimgurl" property="goodsPickImgUrl" />
+      <result column="goodsdetailimgurl" property="goodsDetailImgUrl" />
+   </resultMap>
+
+   <resultMap type="org.final_proj.domain.CartDTO" id="cart">
+      <result column="goodsno" property="goodsNo" />
+      <result column="userid" property="userId" />
+      <result column="amount" property="amount" />
+      <result column="unitprice" property="unitPrice" />
+      <result column="totalprice" property="totalPrice" />
+      <result column="insertdate" property="insertDate" />
+      <result column="updatedate" property="updateDate" />
+   </resultMap>
+</mapper>

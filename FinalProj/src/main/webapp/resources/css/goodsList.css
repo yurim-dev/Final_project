@@ -1,0 +1,104 @@
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+a{text-decoration:none; color:black;}
+img{border: 0;}
+
+select{
+    font-size: 15px;
+    width:80px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+select:hover{
+    border-color:coral;
+}
+#search{
+    text-align: center;
+    padding: 50px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+#search_S{
+    font-size: medium;
+    width:400px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    border:solid 1px gray;
+    outline: none;
+    font-family: 'Nanum Gothic', sans-serif;   
+}
+#search_S:hover{
+    border:solid 1px gray;
+}
+#search_button{
+    width:60px;
+    height: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    border: solid 1px coral;
+    font-family: 'Nanum Gothic', sans-serif;
+  	background-color: white;
+    border-width: thin;
+    color:coral;
+    cursor:pointer;
+    font-weight: bolder;   
+}
+#search_button:hover{
+	border: 1px solid coral;
+	color : white; 
+	background-color : coral;	
+}
+#search_button:hover>a{
+	border: 1px solid coral;
+	color :white; 
+}
+
+#image{
+    padding: 30px;  
+}
+#list_goods{
+    width:1050px;
+    margin: auto;
+}
+#info_goods{
+    margin: auto;
+    align-items: center;
+}
+#title{
+    font-family: 'Nanum Gothic', sans-serif;
+    color: black;
+    padding: 5px; 
+}
+#title>a:hover{
+	color : rgba(255, 69, 1, 0.658);
+}
+#price{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: lighter;
+    color:gray;
+	padding :  0 5px 0 5px;
+}
+#desc{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: lighter;
+    font-size: 13px;
+    padding : 5px;
+
+}
+
+#goods{
+	position: relative;
+    float: left;
+    width: 300px;
+    height: 520px;
+    padding: 20px 20px 20px 20px;
+/*  border-bottom: 1px solid #ddd; */
+}
+#goods img:hover{
+	border: solid 2px rgba(238, 65, 2, 0.466);
+	
+}

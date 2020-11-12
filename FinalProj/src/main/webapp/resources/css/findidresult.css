@@ -1,0 +1,56 @@
+body{margin:0; padding:0;}
+a{text-decoration:none; color:black;}
+a:visited{color:black;}
+
+.wrap_box{
+    width:980px;
+    padding:150px;
+    margin:-77px auto 0;
+    margin-top:0px;
+    background-color: white;
+    height: 800px;
+}
+
+.box{
+    position: relative;
+    top:-5%;
+    left:25%;
+}
+
+h3{
+    font-size:25px;
+    margin-bottom: 7%;
+    margin-left: 21%;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.idbox{
+	width:540px;
+	height:300px;
+	left:-20%;
+	border-top:1px solid lightgray;
+	border-bottom:1px solid lightgray;
+	background-color: none;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size:20px;
+	text-align:center;
+}
+button[type="button"]{
+    background-color: coral;
+    border-style: none;
+    border-radius: 5px;
+    width: 180px;
+    height: 54px;
+    font-size:16px;
+    color: white;
+    cursor:pointer;
+    font-weight: bolder;
+    margin-top:90px;
+    margin-bottom:10px;
+    margin-left:10px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+span{
+	font-weight:bolder;
+	color:coral;
+	
+}

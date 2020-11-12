@@ -1,0 +1,115 @@
+* {margin: 0; padding: 0}
+body{font-family: sans-serif;}
+li{list-style: none;}
+a{text-decoration: none;}
+img{border: 0;}
+
+#logo_header{
+    width: 960px;
+    margin: 0 auto;
+    height: 160px;
+    position: relative;
+}
+#logo_header>#logo{
+    position: absolute;
+    left: -100px; top: 20px;
+}
+#logo{
+    font-family: 'Lemonada', cursive;
+    color : black;
+    font-size:20pt;
+}
+#logo>h1>a{
+    text-decoration: none; color:black;
+}
+#menu{
+    position: absolute;
+    top: 40px;
+    left:180px;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+#menu>ul{
+    overflow:hidden;
+    
+}
+#menu>ul ul{
+    display: none;
+    padding:5px;
+    
+}
+#menu>ul>li>ul>li{
+    padding: 10px;
+
+}
+#menu>ul>li{
+    float:left;
+    text-align: center;
+}
+#menu ul li:hover ul{
+    display: block; 
+    position: relative;
+}
+#menu>ul>li:hover ,a:hover{
+    color: coral;
+    display: block;  
+}
+#menu>ul>li>a:hover{
+    color: coral;
+}
+#menu>ul>li>a{
+    display:block;
+    margin: 0 20px;
+    padding: 2px 10px;
+    color:black;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 18pt;
+}
+
+#login{
+    position: absolute;
+    right: -100px; top: 40px;
+    font-size: 10pt;
+
+}
+#login>ul{
+    overflow:hidden;
+}
+#login>ul>li{
+    float:left;
+    left: 0; 
+}
+#login>ul>li>a{
+    display:block;
+    margin: 0 5px;
+    padding: 2px 10px;
+    color :black;
+}
+h2{
+    text-align: center;
+}
+#searchDetail_img>p>img{
+    text-align: center;
+    /*margin-left: 650px;*/
+}
+#ingredients{
+    text-align: center;
+    font-size: medium;
+}
+#ingredients>p{
+    text-align: justify;
+    text-justify:distribute;
+    line-height:2;
+}
+#cooking{
+    text-align: center;
+    font-size: medium;
+
+}
+#recipe {
+	margin: 0 auto;
+	width: 75%;
+	text-align:center;
+	border: solid grey 5px;
+}

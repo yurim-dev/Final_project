@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.final_proj.mapper.GoodsMapper">
+
+<!-- 
+	상품목록 
+	<select id="getList" resultType="org.final_proj.domain.GoodsVO">
+  	<![CDATA[
+  	
+  		select 	* from Goods
+  		         
+  	]]>
+	</select>
+
+	검색페이지 및 페이징처리
+	<select id="getListWithPaging"
+		resultType="org.final_proj.domain.GoodsVO">
+	  	<![CDATA[
+	  	
+	  		select 	* 
+	  		from 
+	  		(
+	  		select rownum rn,goodsNo,goodsName,price,weight,category,shortEx
+	  		from goods 			
+	  	]]>	
+	  		<where>
+				<if test=" keyword != null and keyword != '' ">
+					goodsName like '%' || #{keyword} || '%'
+					or manufacturer like '%'|| #{keyword} || '%'
+					
+				</if>		
+				<if test=" pageNum != null and pageNum != '' ">
+					
+				<![CDATA[		
+					and rownum  <= #{pageNum} * #{amount} 
+					]]>
+				</if>						
+			</where>
+	  		)
+	  		<![CDATA[
+	  			where rn > (#{pageNum}-1) * #{amount}	
+	  				 		         
+	  		]]>
+	  	
+	</select>
+
+	상세페이지 조회
+	<select id="getDetail"
+		resultType="org.final_proj.domain.GoodsVO">
+  	<![CDATA[
+  	
+  		select 	* from Goods where goodsno = #{goodsno}
+  	]]>
+	</select> -->
+
+
+
+
+<!--DB에 있는  goodsNo가져오기  -->
+<select id="getGoodsNoList" resultType="String">
+
+SELECT GOODSNO FROM GOODS
+
+</select>
+
+
+<!--전체리스트가져오기  -->
+<select id="getGoodsAll" resultType="org.final_proj.domain.GoodsVO">
+
+SELECT * FROM GOODS
+
+</select>
+
+
+<!--크롤링후  DB에 update 하기  -->
+<update id="updateGoods" >
+
+	update GOODS
+	  	set 
+	  		goodsName =#{goodsName},
+	 		price =#{price},
+	 		priceStr =#{priceStr},
+	 		weight =#{weight},
+	 		saleUnit =#{saleUnit},
+	 		shippingType =#{shippingType},
+			THUMBIMGURL =#{thumbImgUrl},
+			shortEx =#{shortEx},
+			longEx =#{longEx},
+			goodsIntroImgUrl =#{goodsIntroImgUrl},
+			ckPointImgUrl =#{ckPointImgUrl},
+			goodsPickImgUrl =#{goodsPickImgUrl},
+			goodsDetailImgUrl =#{goodsDetailImgUrl}
+			
+	  	where GOODSNO = #{goodsNo}
+
+</update>
+
+	  
+
+<!--  	상세페이지 조회 -->
+<select id="getDetail"
+		resultType="org.final_proj.domain.GoodsVO">
+  	<![CDATA[
+  	
+  		select 	* from Goods 
+  		where goodsNo = #{goodsNo}
+  	]]>
+</select>
+
+
+<!--상품검색페이지  -->
+
+<select id="getList" resultType="org.final_proj.domain.GoodsVO">
+
+     <![CDATA[
+     
+        select   * 
+        from 
+        Goods
+      ]]>   
+        <where> 
+       		<if test=" keyword != null and keyword != '' ">
+					goodsName like '%' || #{keyword} || '%'
+    		</if>
+    	</where>
+
+</select>
+
+<select id="getRecipe" resultType="org.final_proj.domain.RecipeVO">
+	<![CDATA[
+		select * from recipe
+	
+	]]>
+	
+</select>
+
+<select id="getGoods" resultType ="org.final_proj.domain.GoodsVO">
+<![CDATA[
+	select *
+	from goods
+	where shortName like   #{ingre}   and category = 'S'
+	]]>
+
+	
+
+
+</select>
+
+
+	  
+
+
+
+
+</mapper>
+  
